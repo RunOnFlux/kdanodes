@@ -236,7 +236,7 @@ export default {
         minute: '2-digit',
       },
       activeName: 'all',
-      baseURL: 'http://localhost:8123/kadena/',
+      baseURL: 'https://api.flux.zel.network/kadena/',
       allNodes: [],
       eligibleNodesOne: [],
       eligibleNodesSeven: [],
