@@ -280,13 +280,13 @@ export default {
     async getEligible(days) {
       const res = await axios.get(`${this.baseURL}eligible/${days}`);
       if (days === 1) {
-        this.eligibleOne = res.data.data;
+        this.eligibleNodesOne = res.data.data;
       }
       if (days === 7) {
-        this.eligibleSeven = res.data.data;
+        this.eligibleNodesSeven = res.data.data;
       }
       if (days === 30) {
-        this.eligibleThirty = res.data.data;
+        this.eligibleNodesThirty = res.data.data;
       }
     },
   },

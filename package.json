@@ -1,6 +1,6 @@
 {
   "name": "kdanodes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kadena Nodes Tracker. Tracking eligibility for rewards for nodes running on Flux.",
   "repository": {
     "type": "git",
