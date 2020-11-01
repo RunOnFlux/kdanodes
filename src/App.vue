@@ -5,9 +5,21 @@
         <div class='header-logo'>
           <span class="helper"></span>
           <img src="./assets/img/flux_white_logo.svg">
-          <img src="./assets/img/love.svg" style="margin-left: 10px; margin-right: 10px;">
-          <img src="./assets/img/kadena.png" style="height: 40px;">
+          <img
+            src="./assets/img/love.svg"
+            style="margin-left: 10px; margin-right: 10px;"
+          >
+          <img
+            src="./assets/img/kadena.png"
+            style="height: 40px;"
+          >
         </div>
+        <ElLink
+          type="info"
+          href="https://github.com/zelcash/zelflux"
+          target="_blank"
+          rel="noopener noreferrer"
+        >The gateway to the your decentralised world</ElLink>
       </div>
       <div class="content">
         <NodeTracker />
