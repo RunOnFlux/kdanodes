@@ -2,7 +2,7 @@
   <div>
     <el-tabs v-model="activeName">
       <el-tab-pane
-        label="All Nodes"
+        label="Active Nodes"
         name="all"
       >
         <el-table
