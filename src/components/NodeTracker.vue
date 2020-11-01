@@ -28,9 +28,9 @@
               <p>Kadena: {{ props.row.account }}</p>
               <p>Tier: {{ props.row.tier }}</p>
               <p>Hash: {{ props.row.hash }}</p>
-              <p>Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
               <el-switch
                 v-model="showHistory[props.row.ip]"
                 active-text="Show History"
@@ -186,9 +186,9 @@
               <p>Kadena: {{ props.row.account }}</p>
               <p>Tier: {{ props.row.tier }}</p>
               <p>Hash: {{ props.row.hash }}</p>
-              <p>Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
               <el-switch
                 v-model="showHistory[props.row.ip]"
                 active-text="Show History"
@@ -344,9 +344,9 @@
               <p>Kadena: {{ props.row.account }}</p>
               <p>Tier: {{ props.row.tier }}</p>
               <p>Hash: {{ props.row.hash }}</p>
-              <p>Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
               <el-switch
                 v-model="showHistory[props.row.ip]"
                 active-text="Show History"
@@ -502,9 +502,9 @@
               <p>Kadena: {{ props.row.account }}</p>
               <p>Tier: {{ props.row.tier }}</p>
               <p>Hash: {{ props.row.hash }}</p>
-              <p>Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
-              <p>Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Last Day Uptime: {{ !loadingHistory[props.row.ip] ? lastDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Weekly Uptime: {{ !loadingHistory[props.row.ip] ? sevenDayUptime(props.row.ip) : 'loading' }}%</p>
+              <p :key="updateKey">Monthly Uptime: {{ !loadingHistory[props.row.ip] ? thirtyDayUptime(props.row.ip) : 'loading' }}%</p>
               <el-switch
                 v-model="showHistory[props.row.ip]"
                 active-text="Show History"
