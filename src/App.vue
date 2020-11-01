@@ -16,10 +16,10 @@
         </div>
         <ElLink
           type="info"
-          href="https://github.com/zelcash/zelflux"
+          href="http://beta.zel.network/flux/"
           target="_blank"
           rel="noopener noreferrer"
-        >The gateway to the your decentralised world</ElLink>
+        >Your gateway to a decentralized world!</ElLink>
       </div>
       <div class="content">
         <NodeTracker />
