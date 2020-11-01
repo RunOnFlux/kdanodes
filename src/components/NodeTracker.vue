@@ -38,9 +38,8 @@
               </el-switch>
               <el-table
                 v-if="showHistory[props.row.ip]"
-                :data="limitedHistory[props.row.ip]"
+                :data="limitedHistory[props.row.ip].reverse()"
                 :key="updateKey"
-                :default-sort="{prop: 'roundTime', order: 'descending'}"
                 :show-header="false"
                 style="width: 100%"
               >
@@ -196,9 +195,8 @@
               </el-switch>
               <el-table
                 v-if="showHistory[props.row.ip]"
-                :data="dayHistory(props.row.ip)"
+                :data="dayHistory(props.row.ip).reverse()"
                 :key="updateKey"
-                :default-sort="{prop: 'roundTime', order: 'descending'}"
                 :show-header="false"
                 style="width: 100%"
               >
@@ -354,9 +352,8 @@
               </el-switch>
               <el-table
                 v-if="showHistory[props.row.ip]"
-                :data="weekHistory(props.row.ip)"
+                :data="weekHistory(props.row.ip).reverse()"
                 :key="updateKey"
-                :default-sort="{prop: 'roundTime', order: 'descending'}"
                 :show-header="false"
                 style="width: 100%"
               >
@@ -512,9 +509,8 @@
               </el-switch>
               <el-table
                 v-if="showHistory[props.row.ip]"
-                :data="limitedHistory[props.row.ip]"
+                :data="limitedHistory[props.row.ip].reverse()"
                 :key="updateKey"
-                :default-sort="{prop: 'roundTime', order: 'descending'}"
                 :show-header="false"
                 style="width: 100%"
               >
