@@ -6,7 +6,7 @@
         name="all"
       >
         <el-table
-          :data="allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=')))"
+          :data="allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3'))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -102,6 +102,9 @@
               <p v-if="props.row.hash === 'localSpecificationsVersion2'">
                 2.2
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion3'">
+                2.3
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -120,7 +123,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid='))).length }}
+                  {{ allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3')).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -129,7 +132,7 @@
                   :lg="2"
                   :xl="2"
                 >
-                  <el-checkbox v-model="hasAccount"></el-checkbox>
+                  <el-checkbox v-model="hasAccountAndCorrectVersion"></el-checkbox>
                 </el-col>
                 <el-col
                   :xs="18"
@@ -163,7 +166,7 @@
         name="eligibleA"
       >
         <el-table
-          :data="eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=')))"
+          :data="eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3'))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -259,6 +262,9 @@
               <p v-if="props.row.hash === 'localSpecificationsVersion2'">
                 2.2
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion3'">
+                2.3
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -277,7 +283,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid='))).length }}
+                  {{ eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3')).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -286,7 +292,7 @@
                   :lg="2"
                   :xl="2"
                 >
-                  <el-checkbox v-model="hasAccount"></el-checkbox>
+                  <el-checkbox v-model="hasAccountAndCorrectVersion"></el-checkbox>
                 </el-col>
                 <el-col
                   :xs="18"
@@ -305,11 +311,14 @@
               </el-row>
             </template>
             <template slot-scope="props">
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=')">
-                Payout Eligible
-              </p>
-              <p v-else>
+              <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
+              </p>
+              <p v-if="props.row.hash !== 'localSpecificationsVersion3'">
+                Invalid Version
+              </p>
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && props.row.hash === 'localSpecificationsVersion3'">
+                Payout Eligible
               </p>
             </template>
           </el-table-column>
@@ -320,7 +329,7 @@
         name="eligibleB"
       >
         <el-table
-          :data="eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=')))"
+          :data="eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3'))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -416,6 +425,9 @@
               <p v-if="props.row.hash === 'localSpecificationsVersion2'">
                 2.2
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion3'">
+                2.3
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -434,7 +446,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid='))).length }}
+                  {{ eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3')).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -443,7 +455,7 @@
                   :lg="2"
                   :xl="2"
                 >
-                  <el-checkbox v-model="hasAccount"></el-checkbox>
+                  <el-checkbox v-model="hasAccountAndCorrectVersion"></el-checkbox>
                 </el-col>
                 <el-col
                   :xs="18"
@@ -462,11 +474,14 @@
               </el-row>
             </template>
             <template slot-scope="props">
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=')">
-                Payout Eligible
-              </p>
-              <p v-else>
+              <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
+              </p>
+              <p v-if="props.row.hash !== 'localSpecificationsVersion3'">
+                Invalid Version
+              </p>
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && props.row.hash === 'localSpecificationsVersion3'">
+                Payout Eligible
               </p>
             </template>
           </el-table-column>
@@ -477,7 +492,7 @@
         name="eligibleC"
       >
         <el-table
-          :data="eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=')))"
+          :data="eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3'))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -573,6 +588,9 @@
               <p v-if="props.row.hash === 'localSpecificationsVersion2'">
                 2.2
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion3'">
+                2.3
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -591,7 +609,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccount || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid='))).length }}
+                  {{ eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && dataB.hash === 'localSpecificationsVersion3')).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -600,7 +618,7 @@
                   :lg="2"
                   :xl="2"
                 >
-                  <el-checkbox v-model="hasAccount"></el-checkbox>
+                  <el-checkbox v-model="hasAccountAndCorrectVersion"></el-checkbox>
                 </el-col>
                 <el-col
                   :xs="18"
@@ -619,11 +637,14 @@
               </el-row>
             </template>
             <template slot-scope="props">
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=')">
-                Payout Eligible
-              </p>
-              <p v-else>
+              <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
+              </p>
+              <p v-if="props.row.hash !== 'localSpecificationsVersion3'">
+                Invalid Version
+              </p>
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && props.row.hash === 'localSpecificationsVersion3'">
+                Payout Eligible
               </p>
             </template>
           </el-table-column>
@@ -654,7 +675,7 @@ export default {
       eligibleNodesSeven: [],
       eligibleNodesThirty: [],
       filterNodes: "",
-      hasAccount: false,
+      hasAccountAndCorrectVersion: false,
       loadingAll: false,
       loadingOne: false,
       loadingSeven: false,
