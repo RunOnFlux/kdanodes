@@ -16,7 +16,7 @@
         </div>
         <ElLink
           type="info"
-          href="http://beta.zel.network/flux/"
+          href="https://zel.network/flux/"
           target="_blank"
           rel="noopener noreferrer"
         >Your gateway to a decentralized world!</ElLink>
