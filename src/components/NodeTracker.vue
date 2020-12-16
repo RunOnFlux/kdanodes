@@ -798,7 +798,14 @@ export default {
       const daysInMiliseconds = 1 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime);
+      const baseTime = 1603882546000;
+      const baseHeight = 20999609;
+      const timeDifference = currentTime - baseTime;
+      const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
+      const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
+      const currentBlockEstimation = baseHeight + blocksPassedInDifference;
+      const minimumAcceptedBlockHeight = currentBlockEstimation - blocksInTimeFrame - 200000; // allow being off sync for 200000 blocks;
+      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime && typeof data.tier === "string" && data.height > minimumAcceptedBlockHeight)
       const l = validChecks.length + 1;
       let uptime = l / numberOfChecksPerDay;
       if (uptime > 1) {
@@ -815,7 +822,14 @@ export default {
       const daysInMiliseconds = 7 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime);
+      const baseTime = 1603882546000;
+      const baseHeight = 20999609;
+      const timeDifference = currentTime - baseTime;
+      const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
+      const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
+      const currentBlockEstimation = baseHeight + blocksPassedInDifference;
+      const minimumAcceptedBlockHeight = currentBlockEstimation - blocksInTimeFrame - 200000; // allow being off sync for 200000 blocks;
+      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime && typeof data.tier === "string" && data.height > minimumAcceptedBlockHeight)
       const l = validChecks.length;
       let uptime = l / numberOfChecksPerDay;
       if (uptime > 1) {
@@ -832,7 +846,14 @@ export default {
       const daysInMiliseconds = 30 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime);
+      const baseTime = 1603882546000;
+      const baseHeight = 20999609;
+      const timeDifference = currentTime - baseTime;
+      const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
+      const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
+      const currentBlockEstimation = baseHeight + blocksPassedInDifference;
+      const minimumAcceptedBlockHeight = currentBlockEstimation - blocksInTimeFrame - 200000; // allow being off sync for 200000 blocks;
+      const validChecks = this.limitedHistory[ip].filter((data) => data.roundTime > minimumTime && typeof data.tier === "string" && data.height > minimumAcceptedBlockHeight)
       const l = validChecks.length;
       let uptime = l / numberOfChecksPerDay;
       if (uptime > 1) {
