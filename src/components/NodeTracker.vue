@@ -866,7 +866,7 @@ export default {
       if (!this.limitedHistory[ip]) {
         return 0;
       }
-      const numberOfChecksPerDay = 1 * 48;
+      const numberOfChecksPerDay = 1 * 48 - 3; // - 5% for inconsistency
       const daysInMiliseconds = 1 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
@@ -890,7 +890,7 @@ export default {
       if (!this.limitedHistory[ip]) {
         return 0;
       }
-      const numberOfChecksPerDay = 7 * 48;
+      const numberOfChecksPerDay = 7 * 48 - 17; // - 5% for inconsistency
       const daysInMiliseconds = 7 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
@@ -914,7 +914,7 @@ export default {
       if (!this.limitedHistory[ip]) {
         return 0;
       }
-      const numberOfChecksPerDay = 30 * 48;
+      const numberOfChecksPerDay = 30 * 48 - 70; // - 5% for inconsistency
       const daysInMiliseconds = 30 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
