@@ -870,8 +870,8 @@ export default {
       const daysInMiliseconds = 1 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const baseTime = 1611710552000;
-      const baseHeight = 26212040;
+      const baseTime = 1625422726000;
+      const baseHeight = 35347955;
       const timeDifference = currentTime - baseTime;
       const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
       const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
@@ -894,8 +894,8 @@ export default {
       const daysInMiliseconds = 7 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const baseTime = 1611710552000;
-      const baseHeight = 26212040;
+      const baseTime = 1625422726000;
+      const baseHeight = 35347955;
       const timeDifference = currentTime - baseTime;
       const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
       const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
@@ -918,8 +918,8 @@ export default {
       const daysInMiliseconds = 30 * 24 * 60 * 60 * 1000;
       const currentTime = new Date().getTime();
       const minimumTime = currentTime - daysInMiliseconds
-      const baseTime = 1611710552000;
-      const baseHeight = 26212040;
+      const baseTime = 1625422726000;
+      const baseHeight = 35347955;
       const timeDifference = currentTime - baseTime;
       const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
       const blocksInTimeFrame = (daysInMiliseconds / 30000) * 20;
