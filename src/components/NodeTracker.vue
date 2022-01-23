@@ -6,7 +6,7 @@
         name="all"
       >
         <el-table
-          :data="allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15')))"
+          :data="allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15')))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -141,6 +141,9 @@
               <p v-else-if="props.row.hash === 'localSpecificationsVersion15'">
                 2.12.0
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion16'">
+                2.12.1
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -159,7 +162,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15'))).length }}
+                  {{ allNodes.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15'))).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -202,7 +205,7 @@
         name="eligibleA"
       >
         <el-table
-          :data="eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15')))"
+          :data="eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15')))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -337,6 +340,9 @@
               <p v-else-if="props.row.hash === 'localSpecificationsVersion15'">
                 2.12.0
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion16'">
+                2.12.1
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -355,7 +361,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15'))).length }}
+                  {{ eligibleNodesOne.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15'))).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -386,10 +392,10 @@
               <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
               </p>
-              <p v-if="props.row.hash !== 'localSpecificationsVersion14' && props.row.hash !== 'localSpecificationsVersion15'">
+              <p v-if="props.row.hash !== 'localSpecificationsVersion16' && props.row.hash !== 'localSpecificationsVersion15'">
                 Invalid Version
               </p>
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion14' || props.row.hash === 'localSpecificationsVersion15')">
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion16' || props.row.hash === 'localSpecificationsVersion15')">
                 Payout Eligible
               </p>
             </template>
@@ -401,7 +407,7 @@
         name="eligibleB"
       >
         <el-table
-          :data="eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15')))"
+          :data="eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15')))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -536,6 +542,9 @@
               <p v-else-if="props.row.hash === 'localSpecificationsVersion15'">
                 2.12.0
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion16'">
+                2.12.1
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -554,7 +563,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15'))).length }}
+                  {{ eligibleNodesSeven.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15'))).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -585,10 +594,10 @@
               <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
               </p>
-              <p v-if="props.row.hash !== 'localSpecificationsVersion14' && props.row.hash !== 'localSpecificationsVersion15'">
+              <p v-if="props.row.hash !== 'localSpecificationsVersion16' && props.row.hash !== 'localSpecificationsVersion15'">
                 Invalid Version
               </p>
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion14' || props.row.hash === 'localSpecificationsVersion15')">
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion16' || props.row.hash === 'localSpecificationsVersion15')">
                 Payout Eligible
               </p>
             </template>
@@ -600,7 +609,7 @@
         name="eligibleC"
       >
         <el-table
-          :data="eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15')))"
+          :data="eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15')))"
           empty-text="No nodes found"
           style="width: 100%"
           @expand-change="loadEligibility"
@@ -735,6 +744,9 @@
               <p v-else-if="props.row.hash === 'localSpecificationsVersion15'">
                 2.12.0
               </p>
+              <p v-else-if="props.row.hash === 'localSpecificationsVersion16'">
+                2.12.1
+              </p>
               <p v-else>
                 Outdated
               </p>
@@ -753,7 +765,7 @@
                   :lg="4"
                   :xl="4"
                 >
-                  {{ eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion14' || dataB.hash === 'localSpecificationsVersion15'))).length }}
+                  {{ eligibleNodesThirty.filter(data => !filterNodes || data.ip.toLowerCase().includes(filterNodes.toLowerCase()) || (data.zelid ? data.zelid.toLowerCase().includes(filterNodes.toLowerCase()) : false) || (data.account ? data.account.toLowerCase().includes(filterNodes.toLowerCase()) : false)).filter((dataB) => !hasAccountAndCorrectVersion || (dataB.account && dataB.account.includes('kadena:') && dataB.account.includes('?chainid=') && (dataB.hash === 'localSpecificationsVersion16' || dataB.hash === 'localSpecificationsVersion15'))).length }}
                 </el-col>
                 <el-col
                   :xs="2"
@@ -784,10 +796,10 @@
               <p v-if="!(props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid='))">
                 Missing Account
               </p>
-              <p v-if="props.row.hash !== 'localSpecificationsVersion14' && props.row.hash !== 'localSpecificationsVersion15'">
+              <p v-if="props.row.hash !== 'localSpecificationsVersion16' && props.row.hash !== 'localSpecificationsVersion15'">
                 Invalid Version
               </p>
-              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion14' || props.row.hash === 'localSpecificationsVersion15')">
+              <p v-if="props.row.account && props.row.account.includes('kadena:') && props.row.account.includes('?chainid=') && (props.row.hash === 'localSpecificationsVersion16' || props.row.hash === 'localSpecificationsVersion15')">
                 Payout Eligible
               </p>
             </template>
